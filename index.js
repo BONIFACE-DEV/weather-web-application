@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", defaultLocationGrabber());
 
 function defaultLocationGrabber () {
-  return fetch('http://localhost:3000/locations')
+  return fetch()
   .then((resp) => resp.json())
   .then((localData) => {
     const defaultLocation = localData.defaultLocation;
@@ -40,6 +40,9 @@ function fetchWeather(searchItem) {
       alert("Please enter a valid Location.")
     });
 }
+
+
+
 // this code handles the events of pressing enter and clicking submit
 // it will take the value of the search field upon click and interpolate that value into the fetch
 // in order to fetch data for the location you searched for
@@ -51,6 +54,8 @@ document.getElementById("weather-search").addEventListener("keypress", (e) => {
 const button = document.getElementById("submit-button");
 button.addEventListener("click", buttonHandler);
 
+
+
 //this is the callback function for pressing the submit button or pressing enter on your keyboard
 //it has been abstracted out for reusability in both event listeners
 function buttonHandler() {
@@ -58,6 +63,8 @@ function buttonHandler() {
   fetchWeather(inputValue);
   document.querySelector(".hidden").classList.add("show");
 }
+
+
 
 //this function converts the time into standard time and adds the correct suffix then adds it to page
 function timeConverter(weatherData) {
@@ -90,7 +97,6 @@ function countryCatcher(countryData) {
   }
 }
 
-//this function will be cleaned up soon (hopefully)
 function weatherLayout(data) {
   console.log(data.location.name);
   console.log(data);
@@ -108,6 +114,8 @@ function weatherLayout(data) {
   //a default location, upon reloading webpage their default location's current weather will be displayed
   const defaultButton = document.querySelector("button");
     defaultButton.classList.remove("hidden");
+
+
 //event listener for when use clicks the "set as default location button"
 //this event listener will send the value they searched for to my JSON server so that it can be grabbed 
 //by the first fetch function in order to display up to data weather info for that location even before
